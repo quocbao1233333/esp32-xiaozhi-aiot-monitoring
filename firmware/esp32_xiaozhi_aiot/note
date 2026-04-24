@@ -1,0 +1,89 @@
+3. File này cần config.h để chạy
+
+Vì file .ino ở trên dùng:
+
+#include "config.h"
+
+nên bạn phải có thêm file:
+
+firmware/esp32_xiaozhi_aiot/config.h
+
+File này không đăng lên GitHub vì chứa WiFi password và XiaoZhi token thật.
+
+Mẫu config.h:
+
+#pragma once
+
+// ============================================================
+// WIFI CONFIGURATION
+// ============================================================
+
+#define WIFI_SSID "TEN_WIFI_CUA_BAN"
+#define WIFI_PASSWORD "MAT_KHAU_WIFI_CUA_BAN"
+
+// ============================================================
+// XIAOZHI MCP CONFIGURATION
+// ============================================================
+
+#define XIAOZHI_MCP_ENDPOINT "wss://api.xiaozhi.me/mcp/?token=TOKEN_CUA_BAN"
+
+// ============================================================
+// OLED SPI PIN CONFIGURATION
+// ============================================================
+
+#define OLED_MOSI_PIN 19
+#define OLED_CLK_PIN 18
+#define OLED_DC_PIN 21
+#define OLED_CS_PIN 22
+#define OLED_RESET_PIN 17
+
+// ============================================================
+// SENSOR AND OUTPUT PIN CONFIGURATION
+// ============================================================
+
+#define DHT_SENSOR_PIN 23
+#define WARNING_LED_PIN 5
+#define BUZZER_OUTPUT_PIN 4
+
+// ============================================================
+// SYSTEM PARAMETERS
+// ============================================================
+
+#define DEFAULT_WARNING_TEMP 35.0
+#define SENSOR_READ_INTERVAL_MS 2000
+#define ALARM_BLINK_INTERVAL_MS 300
+4. File config.example.h để đăng GitHub
+
+Tạo thêm file này để người khác biết cách cấu hình:
+
+firmware/esp32_xiaozhi_aiot/config.example.h
+
+Nội dung:
+
+#pragma once
+
+#define WIFI_SSID "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+
+#define XIAOZHI_MCP_ENDPOINT "wss://api.xiaozhi.me/mcp/?token=YOUR_TOKEN_HERE"
+
+#define OLED_MOSI_PIN 19
+#define OLED_CLK_PIN 18
+#define OLED_DC_PIN 21
+#define OLED_CS_PIN 22
+#define OLED_RESET_PIN 17
+
+#define DHT_SENSOR_PIN 23
+#define WARNING_LED_PIN 5
+#define BUZZER_OUTPUT_PIN 4
+
+#define DEFAULT_WARNING_TEMP 35.0
+#define SENSOR_READ_INTERVAL_MS 2000
+#define ALARM_BLINK_INTERVAL_MS 300
+5. Nhớ thêm .gitignore
+
+Trong file .gitignore, phải có dòng này:
+
+firmware/esp32_xiaozhi_aiot/config.h
+
+Như vậy GitHub chỉ có config.example.h, không có WiFi password/token thật.
